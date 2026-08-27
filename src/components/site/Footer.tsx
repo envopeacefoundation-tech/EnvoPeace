@@ -1,4 +1,5 @@
-import { Heart, Facebook, Twitter, Linkedin, Instagram, MapPin, Phone } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Heart, Facebook, Twitter, Linkedin, Instagram, MapPin, Phone, Mail } from "lucide-react";
 
 const socials = [
   { Icon: Facebook, label: "Facebook" },
@@ -7,12 +8,13 @@ const socials = [
   { Icon: Instagram, label: "Instagram" },
 ];
 
-const sections = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About Us" },
-  { href: "#programs", label: "Our Programs" },
-  { href: "#donate", label: "Donate" },
-  { href: "#contact", label: "Contact" },
+const quickLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About Us" },
+  { to: "/programs", label: "Our Programs" },
+  { to: "/impact", label: "Our Impact" },
+  { to: "/donate", label: "Donate" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
@@ -34,18 +36,34 @@ export function Footer() {
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-background/70">
               A purpose-driven NGO restoring hope, building peace, and creating
-              sustainable opportunities in underserved communities.
+              sustainable opportunities in underserved communities across Nigeria
+              and beyond.
             </p>
+            <div className="mt-5 flex gap-2">
+              {socials.map(({ Icon, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-background/15 bg-background/5 transition-colors hover:bg-accent hover:text-accent-foreground hover:border-accent"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           <div className="md:col-span-3">
             <h4 className="text-sm font-bold uppercase tracking-wider">Quick Links</h4>
             <ul className="mt-4 space-y-2.5 text-sm">
-              {sections.map((s) => (
-                <li key={s.href}>
-                  <a href={s.href} className="text-background/70 transition-colors hover:text-accent">
+              {quickLinks.map((s) => (
+                <li key={s.to}>
+                  <Link
+                    to={s.to}
+                    className="text-background/70 transition-colors hover:text-accent"
+                  >
                     {s.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -62,19 +80,11 @@ export function Footer() {
                 <Phone className="mt-0.5 h-4 w-4 text-accent shrink-0" />
                 +234 806 356 3604
               </li>
+              <li className="flex items-start gap-2.5">
+                <Mail className="mt-0.5 h-4 w-4 text-accent shrink-0" />
+                hello@envopeace.org
+              </li>
             </ul>
-            <div className="mt-5 flex gap-2">
-              {socials.map(({ Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-background/15 bg-background/5 transition-colors hover:bg-accent hover:text-accent-foreground hover:border-accent"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
 

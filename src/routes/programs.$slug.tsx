@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Heart } from "lucide-react";
+import { ArrowLeft, ArrowRight, CircleCheck as CheckCircle2, Heart, MapPin } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -51,18 +51,18 @@ function ProgramPage() {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
+        {/* Hero */}
         <section className="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
           <div className="absolute inset-0 -z-10 bg-gradient-hero" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-background" />
           <div className="mx-auto max-w-5xl px-4 md:px-8 text-primary-foreground">
             <Link
-              to="/"
-              hash="programs"
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary-foreground/85 hover:text-primary-foreground"
+              to="/programs"
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary-foreground/85 hover:text-primary-foreground animate-fade-in"
             >
               <ArrowLeft className="h-4 w-4" /> All Programs
             </Link>
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex items-center gap-4 animate-fade-up">
               <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
                 <Icon className="h-8 w-8" />
               </span>
@@ -70,15 +70,30 @@ function ProgramPage() {
                 Our Programs
               </span>
             </div>
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
+            <h1 className="mt-6 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl animate-fade-up delay-100">
               {program.title}
             </h1>
-            <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85 md:text-xl">
+            <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85 md:text-xl animate-fade-up delay-200">
               {program.tagline}
             </p>
           </div>
         </section>
 
+        {/* Hero Image */}
+        <section className="pb-16 md:pb-20">
+          <div className="mx-auto max-w-6xl px-4 md:px-8">
+            <div className="relative overflow-hidden rounded-3xl shadow-elegant animate-scale-in">
+              <img
+                src={program.image}
+                alt={program.title}
+                className="h-[300px] w-full object-cover md:h-[450px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/60 via-transparent to-transparent" />
+            </div>
+          </div>
+        </section>
+
+        {/* Content */}
         <section className="py-16 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-12 px-4 md:px-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
@@ -92,7 +107,7 @@ function ProgramPage() {
                 {program.highlights.map((h) => (
                   <div
                     key={h.title}
-                    className="rounded-2xl border border-border bg-card p-5 shadow-soft"
+                    className="rounded-2xl border border-border bg-card p-5 shadow-card"
                   >
                     <h4 className="font-semibold text-foreground">{h.title}</h4>
                     <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
@@ -111,8 +126,32 @@ function ProgramPage() {
                   </li>
                 ))}
               </ul>
+
+              {/* Case Study */}
+              <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-secondary/40 shadow-card">
+                <div className="grid md:grid-cols-2">
+                  <div className="relative h-56 md:h-auto">
+                    <img
+                      src={program.caseStudy.image}
+                      alt={program.caseStudy.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6 md:p-8">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+                      <MapPin className="h-3.5 w-3.5" /> {program.caseStudy.location}
+                    </span>
+                    <h3 className="mt-2 text-xl font-bold text-foreground">{program.caseStudy.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {program.caseStudy.story}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
+            {/* Sidebar */}
             <aside className="lg:sticky lg:top-28 self-start">
               <div className="rounded-3xl border border-border bg-gradient-hero p-7 text-primary-foreground shadow-elegant">
                 <h3 className="text-xl font-bold">Help fund this program</h3>
@@ -120,18 +159,19 @@ function ProgramPage() {
                   Every contribution directly supports families and communities through {program.title.toLowerCase()}.
                 </p>
                 <Button asChild variant="secondary" className="mt-5 w-full">
-                  <Link to="/" hash="donate">
+                  <Link to="/donate">
                     <Heart className="h-4 w-4" /> Donate Now
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="mt-2 w-full bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                  <Link to="/" hash="contact">Get Involved</Link>
+                  <Link to="/contact">Get Involved</Link>
                 </Button>
               </div>
             </aside>
           </div>
         </section>
 
+        {/* Other Programs */}
         <section className="border-t border-border bg-secondary/50 py-16">
           <div className="mx-auto max-w-6xl px-4 md:px-8">
             <h2 className="text-2xl font-bold text-foreground md:text-3xl">Explore other programs</h2>
@@ -143,7 +183,7 @@ function ProgramPage() {
                     key={p.slug}
                     to="/programs/$slug"
                     params={{ slug: p.slug }}
-                    className="group rounded-2xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant"
+                    className="group rounded-2xl border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-elegant"
                   >
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-hero">
                       <OIcon className="h-6 w-6 text-primary-foreground" />
@@ -152,6 +192,9 @@ function ProgramPage() {
                       {p.title}
                     </h3>
                     <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{p.desc}</p>
+                    <div className="mt-3 flex items-center gap-1 text-sm font-semibold text-primary">
+                      Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </Link>
                 );
               })}

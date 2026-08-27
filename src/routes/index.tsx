@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
-import { About } from "@/components/site/About";
-import { Programs } from "@/components/site/Programs";
-import { DonationWidget } from "@/components/site/DonationWidget";
-import { Contact } from "@/components/site/Contact";
+import { FeaturedPrograms } from "@/components/site/FeaturedPrograms";
+import { MissionQuote } from "@/components/site/MissionQuote";
+import { QuickDonate } from "@/components/site/QuickDonate";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -26,10 +25,9 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Programs />
-        <DonationWidget />
-        <Contact />
+        <FeaturedPrograms />
+        <MissionQuote />
+        <QuickDonate />
       </main>
       <Footer />
       <Toaster richColors position="top-center" />

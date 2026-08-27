@@ -1,20 +1,20 @@
-import { useMemo, useState } from "react";
-import { Heart, Check } from "lucide-react";
+import { useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { Heart, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 type Currency = "USD" | "NGN";
 
 const presets: Record<Currency, number[]> = {
-  USD: [10, 25, 50, 100],
+  USD: [25, 50, 100, 250],
   NGN: [5000, 10000, 25000, 50000],
 };
 
 const symbol: Record<Currency, string> = { USD: "$", NGN: "₦" };
 
 function impactFor(currency: Currency, amount: number): string {
-  const usd = currency === "USD" ? amount : amount / 500; // rough display-only conversion
+  const usd = currency === "USD" ? amount : amount / 500;
   if (usd >= 100) return "Sponsors a full month of youth skills training for one beneficiary.";
   if (usd >= 50) return "Provides essential healthcare supplies for a family in need.";
   if (usd >= 25) return "Funds educational support — books and materials — for a child.";
@@ -23,21 +23,15 @@ function impactFor(currency: Currency, amount: number): string {
   return "Pick an amount to see the impact your gift will make.";
 }
 
-export function DonationWidget() {
-  const [currency, setCurrency] = useState<Currency>("USD");
-  const [amount, setAmount] = useState<number>(25);
+export function QuickDonate() {
+  const [currency, setCurrency] = useState<Currency>("NGN");
+  const [amount, setAmount] = useState<number>(10000);
   const [custom, setCustom] = useState("");
 
-  const formatted = useMemo(
-    () => `${symbol[currency]}${amount.toLocaleString()}`,
-    [currency, amount],
-  );
+  const formatted = `${symbol[currency]}${amount.toLocaleString()}`;
 
   return (
-    <section
-      id="donate"
-      className="scroll-mt-24 py-20 md:py-28"
-    >
+    <section className="scroll-mt-24 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-4 md:px-8">
         <div className="overflow-hidden rounded-3xl bg-gradient-hero shadow-elegant">
           <div className="grid gap-10 p-8 md:grid-cols-2 md:p-12 lg:p-16">
@@ -45,7 +39,7 @@ export function DonationWidget() {
               <span className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
                 <Heart className="h-3.5 w-3.5" /> Support Our Cause
               </span>
-              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl md:text-5xl">
+              <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
                 Your gift, multiplied.
               </h2>
               <p className="mt-4 text-primary-foreground/85 md:text-lg">
@@ -120,7 +114,7 @@ export function DonationWidget() {
                   <span className="text-base font-bold text-muted-foreground">
                     {symbol[currency]}
                   </span>
-                  <Input
+                  <input
                     type="number"
                     inputMode="numeric"
                     min={1}
@@ -132,7 +126,7 @@ export function DonationWidget() {
                       if (!Number.isNaN(n) && n > 0) setAmount(n);
                     }}
                     placeholder="Enter amount"
-                    className="border-0 bg-transparent px-0 text-base font-semibold shadow-none focus-visible:ring-0"
+                    className="h-10 w-full border-0 bg-transparent px-0 text-base font-semibold outline-none"
                   />
                 </div>
               </label>
@@ -146,11 +140,13 @@ export function DonationWidget() {
                 </p>
               </div>
 
-              <Button variant="hero" size="xl" className="mt-5 w-full">
-                <Heart className="h-4 w-4" /> Donate {formatted}
+              <Button asChild variant="hero" size="xl" className="mt-5 w-full">
+                <Link to="/donate">
+                  <Heart className="h-4 w-4" /> Donate {formatted}
+                </Link>
               </Button>
               <p className="mt-2 text-center text-[11px] text-muted-foreground">
-                Demo simulator — no payment is processed.
+                Secure checkout via Paystack · Crypto also available
               </p>
             </div>
           </div>
