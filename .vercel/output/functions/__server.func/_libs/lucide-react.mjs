@@ -97,11 +97,11 @@ const __iconNode$F = [
 const Bitcoin = createLucideIcon("bitcoin", __iconNode$F);
 const __iconNode$E = [
   ["path", { d: "M3 3v16a2 2 0 0 0 2 2h16", key: "c24i48" }],
-  ["path", { d: "M7 16h8", key: "srdodz" }],
-  ["path", { d: "M7 11h12", key: "127s9w" }],
-  ["path", { d: "M7 6h3", key: "w9rmul" }]
+  ["path", { d: "M18 17V9", key: "2bz60n" }],
+  ["path", { d: "M13 17V5", key: "1frdt8" }],
+  ["path", { d: "M8 17v-3", key: "17ska0" }]
 ];
-const ChartBar = createLucideIcon("chart-bar", __iconNode$E);
+const ChartColumn = createLucideIcon("chart-column", __iconNode$E);
 const __iconNode$D = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
 const Check = createLucideIcon("check", __iconNode$D);
 const __iconNode$C = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
@@ -453,7 +453,7 @@ export {
   LogOut as q,
   FolderKanban as r,
   Inbox as s,
-  ChartBar as t,
+  ChartColumn as t,
   LayoutDashboard as u,
   Plus as v,
   Trash2 as w,
