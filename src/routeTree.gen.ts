@@ -9,48 +9,174 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as DonateRouteImport } from './routes/donate'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgramsSlugRouteImport } from './routes/programs.$slug'
 
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
-  id: '/programs/$slug',
-  path: '/programs/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProgramsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
+  '/impact': typeof ImpactRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/programs/$slug': typeof ProgramsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
+  '/impact': typeof ImpactRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/programs/$slug': typeof ProgramsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
+  '/impact': typeof ImpactRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/programs/$slug': typeof ProgramsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/programs/$slug'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/donate'
+    | '/impact'
+    | '/programs'
+    | '/programs/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/programs/$slug'
-  id: '__root__' | '/' | '/programs/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/donate'
+    | '/impact'
+    | '/programs'
+    | '/programs/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/donate'
+    | '/impact'
+    | '/programs'
+    | '/programs/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProgramsSlugRoute: typeof ProgramsSlugRoute
+  AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
+  ContactRoute: typeof ContactRoute
+  DonateRoute: typeof DonateRoute
+  ImpactRoute: typeof ImpactRoute
+  ProgramsRoute: typeof ProgramsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -60,17 +186,34 @@ declare module '@tanstack/react-router' {
     }
     '/programs/$slug': {
       id: '/programs/$slug'
-      path: '/programs/$slug'
+      path: '/$slug'
       fullPath: '/programs/$slug'
       preLoaderRoute: typeof ProgramsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProgramsRoute
     }
   }
 }
 
+interface ProgramsRouteChildren {
+  ProgramsSlugRoute: typeof ProgramsSlugRoute
+}
+
+const ProgramsRouteChildren: ProgramsRouteChildren = {
+  ProgramsSlugRoute: ProgramsSlugRoute,
+}
+
+const ProgramsRouteWithChildren = ProgramsRoute._addFileChildren(
+  ProgramsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProgramsSlugRoute: ProgramsSlugRoute,
+  AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
+  ContactRoute: ContactRoute,
+  DonateRoute: DonateRoute,
+  ImpactRoute: ImpactRoute,
+  ProgramsRoute: ProgramsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
