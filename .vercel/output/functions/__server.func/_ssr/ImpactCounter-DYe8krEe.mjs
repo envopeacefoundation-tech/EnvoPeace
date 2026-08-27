@@ -1,22 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-
-interface ImpactCounterProps {
-  value: string;
-  label: string;
-  icon?: React.ReactNode;
-  delay?: number;
-}
-
-export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterProps) {
-  const [displayValue, setDisplayValue] = useState("0");
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
+import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
+function ImpactCounter({ value, label, icon, delay = 0 }) {
+  const [displayValue, setDisplayValue] = reactExports.useState("0");
+  const [visible, setVisible] = reactExports.useState(false);
+  const ref = reactExports.useRef(null);
   const numericMatch = value.match(/^([\d,]+)/);
   const suffix = numericMatch ? value.slice(numericMatch[0].length) : "";
   const targetNum = numericMatch ? parseInt(numericMatch[0].replace(/,/g, ""), 10) : 0;
-
-  useEffect(() => {
+  reactExports.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,13 +14,12 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
           observer.disconnect();
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.3 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
+  reactExports.useEffect(() => {
     if (!visible || !numericMatch) {
       setDisplayValue(value);
       return;
@@ -52,20 +41,20 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
     }, duration / steps);
     return () => clearInterval(timer);
   }, [visible, value, targetNum, suffix, numericMatch]);
-
-  return (
-    <div
-      ref={ref}
-      className="text-center animate-fade-up"
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      {icon && <div className="mb-3 flex justify-center text-primary-deep">{icon}</div>}
-      <div className="text-3xl font-bold text-primary-foreground md:text-4xl lg:text-5xl">
-        {displayValue}
-      </div>
-      <div className="mt-1.5 text-xs uppercase tracking-wider text-primary-foreground/70 md:text-sm">
-        {label}
-      </div>
-    </div>
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      ref,
+      className: "text-center animate-fade-up",
+      style: { animationDelay: `${delay}ms` },
+      children: [
+        icon && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-3 flex justify-center text-primary-deep", children: icon }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold text-primary-foreground md:text-4xl lg:text-5xl", children: displayValue }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-1.5 text-xs uppercase tracking-wider text-primary-foreground/70 md:text-sm", children: label })
+      ]
+    }
   );
 }
+export {
+  ImpactCounter as I
+};
