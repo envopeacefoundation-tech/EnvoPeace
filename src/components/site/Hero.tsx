@@ -18,7 +18,13 @@ export function Hero() {
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-background" />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(to bottom, transparent 0%, transparent 90%, var(--background) 100%)",
+        }}
+      />
 
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:px-8 md:py-24 lg:grid-cols-12 lg:py-32">
         <div className="lg:col-span-7 text-primary-foreground">
