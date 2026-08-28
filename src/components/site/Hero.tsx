@@ -46,7 +46,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <dl className="mt-12 grid max-w-lg grid-cols-2 gap-6 border-t border-primary-foreground/20 pt-8 sm:grid-cols-4">
+          <dl className="mt-12 grid max-w-lg grid-cols-2 gap-4 border-t border-primary-foreground/20 pt-8 sm:grid-cols-4 sm:gap-6">
             <ImpactCounter value="10,000+" label="Lives Impacted" icon={<Users className="h-6 w-6" />} delay={0} />
             <ImpactCounter value="25+" label="Communities" icon={<MapPin className="h-6 w-6" />} delay={100} />
             <ImpactCounter value="5,000+" label="Families Served" icon={<HeartHandshake className="h-6 w-6" />} delay={200} />

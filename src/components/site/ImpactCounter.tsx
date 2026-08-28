@@ -64,11 +64,11 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
   return (
     <div
       ref={ref}
-      className="text-center animate-fade-up"
+      className="flex flex-col items-center px-2 text-center animate-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
       {icon && <div className="mb-3 flex justify-center text-accent">{icon}</div>}
-      <div className="text-3xl font-bold text-primary-foreground md:text-4xl lg:text-5xl">
+      <div className="text-2xl font-bold leading-tight text-primary-foreground sm:text-3xl md:text-4xl lg:text-5xl">
         {displayValue}
       </div>
       <div className="mt-1.5 text-xs uppercase tracking-wider text-primary-foreground/70 md:text-sm">

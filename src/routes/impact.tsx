@@ -53,7 +53,7 @@ function ImpactPage() {
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="rounded-3xl bg-gradient-hero p-8 shadow-elegant md:p-12 lg:p-16">
-              <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
                 <ImpactCounter value="10,000+" label="Lives Impacted" icon={<Users className="h-7 w-7" />} delay={0} />
                 <ImpactCounter value="25+" label="Communities" icon={<MapPin className="h-7 w-7" />} delay={100} />
                 <ImpactCounter value="5,000+" label="Families Served" icon={<HeartHandshake className="h-7 w-7" />} delay={200} />
