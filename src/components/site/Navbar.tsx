@@ -55,8 +55,8 @@ export function Navbar() {
             <Heart className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="text-sm font-bold text-accent md:text-base">Envo Peace</span>
-            <span className="text-[10px] font-medium uppercase tracking-wider text-primary-foreground md:text-xs">
+            <span className="text-sm font-bold text-foreground md:text-base">Envo Peace</span>
+            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground md:text-xs">
               & Development Foundation
             </span>
           </span>
@@ -70,8 +70,8 @@ export function Navbar() {
                   className={cn(
                     "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none",
                     isActive("/programs")
-                      ? "text-accent bg-primary-soft"
-                      : "text-accent hover:bg-primary-soft hover:text-accent",
+                      ? "text-primary-deep bg-primary-soft"
+                      : "text-foreground/80 hover:bg-primary-soft hover:text-primary-deep",
                   )}
                 >
                   Programs <ChevronDown className="h-4 w-4" />
@@ -106,8 +106,8 @@ export function Navbar() {
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   isActive(link.to)
-                    ? "text-accent bg-primary-soft"
-                    : "text-accent hover:bg-primary-soft hover:text-accent",
+                    ? "text-primary-deep bg-primary-soft"
+                    : "text-foreground/80 hover:bg-primary-soft hover:text-primary-deep",
                 )}
               >
                 {link.label}
@@ -143,8 +143,8 @@ export function Navbar() {
                 className={cn(
                   "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive(link.to)
-                    ? "bg-primary-soft text-accent"
-                    : "text-accent hover:bg-primary-soft hover:text-accent",
+                    ? "bg-primary-soft text-primary-deep"
+                    : "text-foreground/85 hover:bg-primary-soft hover:text-primary-deep",
                 )}
               >
                 {link.label}

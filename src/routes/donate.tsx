@@ -162,7 +162,7 @@ function DonatePage() {
         {/* Hero */}
         <section className="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
           <div className="absolute inset-0 -z-10 bg-gradient-hero" />
-          <div className="absolute inset-0 -z-10 bg-gradient-hero-fade" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-background" />
           <div className="mx-auto max-w-5xl px-4 md:px-8 text-primary-foreground">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-1.5 text-xs font-medium backdrop-blur animate-fade-in">
               <Sparkles className="h-3.5 w-3.5" /> Support Our Cause

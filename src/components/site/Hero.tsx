@@ -18,7 +18,7 @@ export function Hero() {
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-hero-fade" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-background" />
 
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:px-8 md:py-24 lg:grid-cols-12 lg:py-32">
         <div className="lg:col-span-7 text-primary-foreground">
@@ -46,7 +46,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <dl className="mt-12 grid max-w-lg grid-cols-2 gap-4 border-t border-primary-foreground/20 pt-8 sm:grid-cols-4 sm:gap-6 lg:max-w-2xl lg:gap-8">
+          <dl className="mt-12 grid max-w-lg grid-cols-2 gap-4 border-t border-primary-foreground/20 pt-8 sm:grid-cols-4 sm:gap-6">
             <ImpactCounter value="10,000+" label="Lives Impacted" icon={<Users className="h-6 w-6" />} delay={0} />
             <ImpactCounter value="25+" label="Communities" icon={<MapPin className="h-6 w-6" />} delay={100} />
             <ImpactCounter value="5,000+" label="Families Served" icon={<HeartHandshake className="h-6 w-6" />} delay={200} />
