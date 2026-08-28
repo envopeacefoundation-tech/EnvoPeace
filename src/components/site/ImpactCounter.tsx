@@ -43,7 +43,7 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
       return;
     }
 
-    const duration = 1500;
+    const duration = 900;
     const steps = 60;
     const increment = targetNum / steps;
     let current = 0;
@@ -68,7 +68,7 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
       style={{ animationDelay: `${delay}ms` }}
     >
       {icon && <div className="mb-3 flex justify-center text-accent">{icon}</div>}
-      <div className="text-2xl font-bold leading-tight text-primary-foreground sm:text-3xl md:text-4xl lg:text-5xl">
+      <div className="whitespace-nowrap text-2xl font-bold leading-tight text-primary-foreground sm:text-3xl md:text-4xl lg:text-5xl">
         {displayValue}
       </div>
       <div className="mt-1.5 text-xs uppercase tracking-wider text-primary-foreground/70 md:text-sm">
