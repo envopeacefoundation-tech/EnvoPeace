@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface ImpactCounterProps {
   value: string;
@@ -12,9 +12,15 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const numericMatch = value.match(/^([\d,]+)/);
-  const suffix = numericMatch ? value.slice(numericMatch[0].length) : "";
-  const targetNum = numericMatch ? parseInt(numericMatch[0].replace(/,/g, ""), 10) : 0;
+  const { targetNum, suffix, isNumeric } = useMemo(() => {
+    const match = value.match(/^([\d,]+)/);
+    if (!match) return { targetNum: 0, suffix: "", isNumeric: false };
+    return {
+      targetNum: parseInt(match[0].replace(/,/g, ""), 10),
+      suffix: value.slice(match[0].length),
+      isNumeric: true,
+    };
+  }, [value]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,10 +37,12 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
   }, []);
 
   useEffect(() => {
-    if (!visible || !numericMatch) {
+    if (!visible) return;
+    if (!isNumeric) {
       setDisplayValue(value);
       return;
     }
+
     const duration = 1500;
     const steps = 60;
     const increment = targetNum / steps;
@@ -51,7 +59,7 @@ export function ImpactCounter({ value, label, icon, delay = 0 }: ImpactCounterPr
       }
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [visible, value, targetNum, suffix, numericMatch]);
+  }, [visible, isNumeric, targetNum, suffix, value]);
 
   return (
     <div
