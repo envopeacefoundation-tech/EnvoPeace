@@ -54,7 +54,7 @@ function ProgramPage() {
         {/* Hero */}
         <section className="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
           <div className="absolute inset-0 -z-10 bg-gradient-hero" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-background" />
+          <div className="absolute inset-0 -z-10 bg-gradient-hero-fade" />
           <div className="mx-auto max-w-5xl px-4 md:px-8 text-primary-foreground">
             <Link
               to="/programs"

@@ -102,6 +102,9 @@
 @utility bg-gradient-hero {
   background-image: var(--gradient-hero);
 }
+@utility bg-gradient-hero-fade {
+  background-image: linear-gradient(to bottom, transparent 0%, transparent 90%, var(--background) 100%);
+}
 @utility bg-gradient-accent {
   background-image: var(--gradient-accent);
 }
