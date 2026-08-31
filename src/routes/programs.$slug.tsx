@@ -1,8 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, CircleCheck as CheckCircle2, Heart, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight, CircleCheck as CheckCircle2, Heart, Circle as HelpCircle, MapPin, HandHeart, Target } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { getProgram, programs, type Program } from "@/components/site/programs-data";
 
 export const Route = createFileRoute("/programs/$slug")({
@@ -127,6 +133,29 @@ function ProgramPage() {
                 ))}
               </ul>
 
+              {/* Approach */}
+              <h3 className="mt-12 flex items-center gap-2 text-xl font-bold text-foreground md:text-2xl">
+                <Target className="h-6 w-6 text-primary" /> Our approach
+              </h3>
+              <div className="mt-6 space-y-4">
+                {program.approach.map((step, i) => (
+                  <div
+                    key={step.title}
+                    className="flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-card"
+                  >
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-hero text-base font-bold text-primary-foreground">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h4 className="font-semibold text-foreground">{step.title}</h4>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        {step.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
               {/* Case Study */}
               <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-secondary/40 shadow-card">
                 <div className="grid md:grid-cols-2">
@@ -149,6 +178,41 @@ function ProgramPage() {
                   </div>
                 </div>
               </div>
+
+              {/* How to Help */}
+              <h3 className="mt-12 flex items-center gap-2 text-xl font-bold text-foreground md:text-2xl">
+                <HandHeart className="h-6 w-6 text-primary" /> How you can help
+              </h3>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {program.howToHelp.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-border bg-card p-5 shadow-card transition-all hover:-translate-y-0.5 hover:shadow-elegant"
+                  >
+                    <h4 className="font-semibold text-foreground">{item.title}</h4>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* FAQ */}
+              <h3 className="mt-12 flex items-center gap-2 text-xl font-bold text-foreground md:text-2xl">
+                <HelpCircle className="h-6 w-6 text-primary" /> Frequently asked questions
+              </h3>
+              <Accordion type="single" collapsible className="mt-6 w-full">
+                {program.faqs.map((faq, i) => (
+                  <AccordionItem key={i} value={`item-${i}`}>
+                    <AccordionTrigger className="text-left text-base font-medium text-foreground">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
 
             {/* Sidebar */}

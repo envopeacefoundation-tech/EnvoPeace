@@ -1,0 +1,1 @@
+import{j as r}from"./index-Bj28HPga.js";import{B as n}from"./button-eKkyp-gh.js";const s=({reset:e})=>r.jsx("div",{className:"flex min-h-screen items-center justify-center",children:r.jsx(n,{onClick:e,children:"Try again"})});export{s as errorComponent};
