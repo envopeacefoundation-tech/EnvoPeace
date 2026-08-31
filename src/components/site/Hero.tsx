@@ -8,7 +8,7 @@ const heroImg = "https://images.pexels.com/photos/9090746/pexels-photo-9090746.j
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-24 md:pt-28">
+    <section className="relative isolate overflow-hidden pt-20 md:pt-24">
       <div className="absolute inset-0 -z-10 bg-gradient-hero" />
       <div
         className="absolute inset-0 -z-10 opacity-30 mix-blend-overlay"
@@ -20,7 +20,7 @@ export function Hero() {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-background" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:px-8 md:py-24 lg:grid-cols-12 lg:py-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-10 md:px-8 md:py-14 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-7 text-primary-foreground">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-1.5 text-xs font-medium backdrop-blur animate-fade-in">
             <Sparkles className="h-3.5 w-3.5" /> Peace · Hope · Development
